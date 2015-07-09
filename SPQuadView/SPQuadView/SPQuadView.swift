@@ -29,10 +29,19 @@ class SPQuadView: UIView {
     }
     lazy var videoInput : AVCaptureDeviceInput? = {
         if let device = self.device.first as? AVCaptureDevice{
+            device.activeVideoMinFrameDuration = CMTimeMake(1, 30)
+            device.activeVideoMaxFrameDuration = CMTimeMake(1, 30)
             let lazilyVideoInput = AVCaptureDeviceInput(device: device, error: nil)
             return lazilyVideoInput
         }
         return nil
+    }()
+    lazy var videoOutput: AVCaptureVideoDataOutput? = {
+        let output = AVCaptureVideoDataOutput()
+        let format = kCVPixelFormatType_32BGRA
+        output.videoSettings = [kCVPixelBufferPixelFormatTypeKey : format]
+        output.alwaysDiscardsLateVideoFrames = true
+        return output
     }()
 
     override init(frame: CGRect) {
