@@ -163,6 +163,8 @@
 		B9DA1FDD1B48083200F5CB91 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0640;
 				ORGANIZATIONNAME = hxx;
 				TargetAttributes = {
@@ -421,6 +423,7 @@
 				B9DA20061B48083300F5CB91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B9DA20071B48083300F5CB91 /* Build configuration list for PBXNativeTarget "SPQuadViewTests" */ = {
 			isa = XCConfigurationList;
@@ -429,6 +432,7 @@
 				B9DA20091B48083300F5CB91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-class SPQuadView: UIView {
+class SPQuadView: UIView ,AVCaptureVideoDataOutputSampleBufferDelegate{
 
     /*
     // Only override drawRect: if you perform custom drawing.
@@ -31,7 +31,7 @@ class SPQuadView: UIView {
         if let device = self.device.first as? AVCaptureDevice{
             device.activeVideoMinFrameDuration = CMTimeMake(1, 30)
             device.activeVideoMaxFrameDuration = CMTimeMake(1, 30)
-            let lazilyVideoInput = AVCaptureDeviceInput(device: device, error: nil)
+            let lazilyVideoInput = try? AVCaptureDeviceInput(device: device)
             return lazilyVideoInput
         }
         return nil
@@ -39,9 +39,15 @@ class SPQuadView: UIView {
     lazy var videoOutput: AVCaptureVideoDataOutput? = {
         let output = AVCaptureVideoDataOutput()
         let format = kCVPixelFormatType_32BGRA
-        output.videoSettings = [kCVPixelBufferPixelFormatTypeKey : format]
+        output.videoSettings = [kCVPixelBufferPixelFormatTypeKey : Int(format)]
         output.alwaysDiscardsLateVideoFrames = true
+        let videoDataOutputQueue = dispatch_queue_create("VideoDataOutputQueue", DISPATCH_QUEUE_SERIAL)
+        output.setSampleBufferDelegate(self, queue: videoDataOutputQueue)
         return output
+    }()
+    lazy var preview:AVCaptureVideoPreviewLayer = {
+        let layer = AVCaptureVideoPreviewLayer.init(session: self.session)
+        return layer
     }()
 
     override init(frame: CGRect) {
@@ -49,9 +55,31 @@ class SPQuadView: UIView {
     }
     convenience init(){
         self.init(frame: CGRectZero)
+        self.session.startRunning()
+        setupCamera()
     }
 
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+    deinit{
+        self.session.stopRunning()
+    }
+    
+    override func layoutSubviews() {
+        self.preview.frame = self.bounds
+    }
+    
+    func setupCamera(){
+        if session.canAddInput(videoInput) {
+            session.addInput(videoInput)
+        }
+        if session.canAddOutput(videoOutput){
+            session.addOutput(videoOutput)
+        }
+        self.layer.insertSublayer(preview, atIndex: 0)
+    }
+    func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
+        
     }
 }
