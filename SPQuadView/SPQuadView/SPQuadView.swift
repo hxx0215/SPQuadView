@@ -85,6 +85,7 @@ class SPQuadView: UIView ,AVCaptureVideoDataOutputSampleBufferDelegate{
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
         let image = fixImageOrientation(imageFromSampleBuffer(sampleBuffer))
         self.image = image
+        print(QuadDetector.quadfromImage(image))
     }
     func imageFromSampleBuffer(sampleBuffer: CMSampleBuffer) -> UIImage {
         // Get a CMSampleBuffer's Core Video image buffer for the media data
