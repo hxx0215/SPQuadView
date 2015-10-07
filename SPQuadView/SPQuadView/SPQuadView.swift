@@ -51,6 +51,10 @@ class SPQuadView: UIView ,AVCaptureVideoDataOutputSampleBufferDelegate{
         layer.videoGravity = AVLayerVideoGravityResizeAspectFill
         return layer
     }()
+    lazy var quadView:QuadShowView = {
+        let view = QuadShowView(frame: self.bounds)
+        return view
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -81,11 +85,15 @@ class SPQuadView: UIView ,AVCaptureVideoDataOutputSampleBufferDelegate{
         }
         videoOutput?.connectionWithMediaType(AVMediaTypeVideo).videoOrientation = .Portrait
         self.layer.insertSublayer(preview, atIndex: 0)
+        self.addSubview(self.quadView)
     }
     func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!) {
         let image = fixImageOrientation(imageFromSampleBuffer(sampleBuffer))
         self.image = image
-        print(QuadDetector.quadfromImage(image))
+        let points = QuadDetector.quadfromImage(image)
+        dispatch_async(dispatch_get_main_queue()) { () -> Void in
+            self.quadView.drawPath(points, imageSize: image.size, viewSize: self.bounds.size)
+        }
     }
     func imageFromSampleBuffer(sampleBuffer: CMSampleBuffer) -> UIImage {
         // Get a CMSampleBuffer's Core Video image buffer for the media data

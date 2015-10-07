@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B95D09D41BC551B500D4FF97 /* QuadShowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B95D09D31BC551B500D4FF97 /* QuadShowView.swift */; settings = {ASSET_TAGS = (); }; };
 		B96A927D1BC402AB00217345 /* QuadDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B96A927C1BC402AB00217345 /* QuadDetector.swift */; settings = {ASSET_TAGS = (); }; };
 		B9DA1FEB1B48083200F5CB91 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DA1FEA1B48083200F5CB91 /* AppDelegate.swift */; };
 		B9DA1FED1B48083200F5CB91 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9DA1FEC1B48083200F5CB91 /* ViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B95D09D31BC551B500D4FF97 /* QuadShowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadShowView.swift; sourceTree = "<group>"; };
 		B96A927C1BC402AB00217345 /* QuadDetector.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuadDetector.swift; sourceTree = "<group>"; };
 		B9DA1FE51B48083200F5CB91 /* SPQuadView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SPQuadView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B9DA1FE91B48083200F5CB91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				B9DA1FEA1B48083200F5CB91 /* AppDelegate.swift */,
 				B9DA1FEC1B48083200F5CB91 /* ViewController.swift */,
 				B9DA200A1B48095700F5CB91 /* SPQuadView.swift */,
+				B95D09D31BC551B500D4FF97 /* QuadShowView.swift */,
 				B96A927C1BC402AB00217345 /* QuadDetector.swift */,
 				B9DA1FEE1B48083200F5CB91 /* Main.storyboard */,
 				B9DA1FF11B48083300F5CB91 /* Images.xcassets */,
@@ -227,6 +230,7 @@
 				B9DA200B1B48095700F5CB91 /* SPQuadView.swift in Sources */,
 				B9DA1FED1B48083200F5CB91 /* ViewController.swift in Sources */,
 				B96A927D1BC402AB00217345 /* QuadDetector.swift in Sources */,
+				B95D09D41BC551B500D4FF97 /* QuadShowView.swift in Sources */,
 				B9DA1FEB1B48083200F5CB91 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
