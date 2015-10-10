@@ -17,7 +17,8 @@ class QuadDetector: NSObject {
         let ciimage = CIImage(CGImage: ref)
         let options = [CIDetectorAccuracy: CIDetectorAccuracyHigh,
             CIDetectorTracking: NSNumber(float: 1.0)]
-        let detector = CIDetector(ofType: CIDetectorTypeRectangle, context: nil, options: options)
+        let context = CIContext(options:[kCIContextUseSoftwareRenderer : true])
+        let detector = CIDetector(ofType: CIDetectorTypeRectangle, context: context, options: options)
         let res = detector.featuresInImage(ciimage)
         if res.count < 1 {
             return nil
